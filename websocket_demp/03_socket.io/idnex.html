@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./node_modules/socket.io/client-dist/socket.io.js"></script>
+    <script>
+      const socket = io("http://localhost:3000")
+
+      //触发事件
+      socket.emit("to-server", { msg: "你在干什么" })
+
+      //on注册事件
+      socket.on("send1", (data) => {
+        console.log(socket.id)
+        console.log(data)
+      })
+    </script>
+  </body>
+</html>

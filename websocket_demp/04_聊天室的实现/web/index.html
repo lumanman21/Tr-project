@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="login">
+      <label for="username">
+        用户名：
+        <input type="text" name="" id="username" />
+        <input type="button" value="登录" id="login_btn" />
+      </label>
+    </div>
+    <div id="main">
+      <div class="left">
+        <div class="top"></div>
+        <div class="bottom"></div>
+      </div>
+      <div class="right">
+        <div class="top"></div>
+        <div class="content">
+          <!-- <div class="in_out"></div> -->
+          <!-- <div class="me">
+            <div class="avatar"></div>
+            <div class="info"></div>
+          </div>
+          <div class="you">
+            <div class="avatar"></div>
+            <div class="info"></div>
+          </div> -->
+        </div>
+        <div class="bottom">
+          <div class="input">
+            <input type="textarea" id="info_input" />
+          </div>
+          <div class="submit">
+            <button id="submit">发送</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../server/node_modules/socket.io/client-dist/socket.io.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

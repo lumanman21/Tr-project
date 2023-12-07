@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .content {
+        width: 400px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input class="ipt" type="text" />
+    <button class="btn">发送</button>
+    <div class="content"></div>
+  </body>
+  <script>
+    // addEventListener 当一个元素嵌套了另一个元素，并且两个元素都对同一事件注册了一个处理函数时，所发生的事件冒泡和事件捕获是两种不同的事件传播方式。默认为 false(冒泡流)
+    var input = document.querySelector(".ipt")
+    var button = document.querySelector(".btn")
+    var div = document.querySelector(".content")
+
+    var socket = new WebSocket("ws://localhost:8000/")
+
+    //websocket连接成功
+    socket.addEventListener("open", function () {
+      console.log("ws连接成功")
+    })
+
+    //websocket关闭连接
+    socket.addEventListener("close", function () {
+      console.log("ws关闭")
+    })
+
+    //websocket连接失败
+    socket.addEventListener("error", function () {
+      console.log("ws出错")
+    })
+
+    //websocket接受消息
+    socket.addEventListener("message", function (e) {
+      console.log(e)
+      const data = JSON.parse(e.data)
+      let info = ""
+      switch (data.type) {
+        case 0:
+          info = `<div style="text-align: center; color: gray">${data.msg}</div>`
+          break
+        case 1:
+          info = `<div style="text-align: center; color: gray">${data.msg}</div>`
+          break
+        case 2:
+          info = `<div>${data.msg}  ${data.time}</div>`
+          break
+      }
+      div.innerHTML += info
+    })
+
+    //点击发送
+    button.onclick = function () {
+      let val = input.value
+      // socket.send(JSON.stringify(val))
+      socket.send(val)
+      input.value = ""
+    }
+    // socket.close()//关闭
+  </script>
+</html>
